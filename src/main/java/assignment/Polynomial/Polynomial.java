@@ -9,8 +9,8 @@ package assignment.Polynomial;
  */
 
 public class Polynomial {
-	private int[] coef; // coefficients p(x) = sum { coef[i] * x^i }
-	private int degree; // degree of polynomial (-1 for the zero polynomial)
+	private int[] coef; 
+	private int degree; 
 
 	/**
      * Initializes a new polynomial a x^b
@@ -27,10 +27,7 @@ public class Polynomial {
 		reduce();
 	}
 
-	// pre-compute the degree of the polynomial, in case of leading zero
-	// coefficients
-	// (that is, the length of the array need not relate to the degree of the
-	// polynomial)
+	
 	private void reduce() {
 		degree = -1;
 		for (int i = coef.length - 1; i >= 0; i--) {
@@ -50,6 +47,10 @@ public class Polynomial {
 		return degree;
 	}
 
+	/**
+	* @param that 
+	* @return Polynomial the value of polynomial after addition of polynomials
+	*/
 	public Polynomial plus(Polynomial that) {
 		Polynomial poly = new Polynomial(0, Math.max(this.degree, that.degree));
 		for (int i = 0; i <= this.degree; i++)
@@ -60,6 +61,11 @@ public class Polynomial {
 		return poly;
 	}
 
+	
+	/**
+	* @param that 
+	* @return Polynomial the value of polynomial after Substarction of polynomials
+	*/
 	public Polynomial minus(Polynomial that) {
 		Polynomial poly = new Polynomial(0, Math.max(this.degree, that.degree));
 		for (int i = 0; i <= this.degree; i++)
@@ -70,6 +76,10 @@ public class Polynomial {
 		return poly;
 	}
 
+	/**
+	* @param that 
+	* @return Polynomial the value of polynomial after multiplication of polynomials
+	*/
 	public Polynomial times(Polynomial that) {
 		Polynomial poly = new Polynomial(0, this.degree + that.degree);
 		for (int i = 0; i <= this.degree; i++)
@@ -79,6 +89,9 @@ public class Polynomial {
 		return poly;
 	}
 
+	/** 
+	* @return Polynomial the value of polynomial after differentiating polynomials
+	*/
 	public Polynomial differentiate() {
 		if (degree == 0)
 			return new Polynomial(0, 0);
